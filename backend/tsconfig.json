@@ -8,8 +8,8 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "typeRoots": ["./node_modules/@types", "./src/types"]  // Adicione esta linha
+    "typeRoots": ["./node_modules/@types", "./src/types"] 
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "include": ["src"], 
+  "exclude": ["node_modules"]  
 }
