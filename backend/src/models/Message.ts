@@ -1,6 +1,6 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
 
-class Message extends Model {
+export class Message extends Model {
   public id!: number;
   public content!: string;
   public userId!: string;

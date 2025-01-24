@@ -1,6 +1,6 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
 
-class Chat extends Model {
+export class Chat extends Model {
   public id!: number;
   public name!: string;
   public isGroup!: boolean;
@@ -30,6 +30,7 @@ export default class ChatModel {
         timestamps: true,
       }
     );
-    return Chat;
+
+    return Chat; // Exporta o modelo Sequelize
   }
 }
