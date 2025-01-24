@@ -1,17 +1,9 @@
 import express from "express";
+import routes from "./routes"; // Importa o index.ts da pasta routes
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Middleware para interpretar JSON
 app.use(express.json());
+app.use("/api", routes); // Todas as rotas passam pelo prefixo "/api"
 
-// Rota básica para testar se a API está rodando
-app.get("/", (req, res) => {
-  res.send("API funcionando!");
-});
-
-// Inicia o servidor
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
+app.listen(5000, () => console.log("Servidor rodando na porta 5000"));

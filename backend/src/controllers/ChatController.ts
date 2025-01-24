@@ -1,26 +1,42 @@
 import { Request, Response } from "express";
-import { models } from "../models";
 
 class ChatController {
-  // Criar um novo chat
-  static async createChat(req: Request, res: Response) {
+  // Método para obter todos os chats
+  static async getAllChats(req: Request, res: Response): Promise<Response> {
     try {
-      const { name, isGroup } = req.body;
-      const chat = await models.Chat.create({ name, isGroup });
+      // Substitua isso por lógica real (exemplo fictício)
+      const chats = [
+        { id: 1, name: "Chat 1" },
+        { id: 2, name: "Chat 2" },
+      ];
 
-      return res.status(201).json(chat);
+      return res
+        .status(200)
+        .json({ message: "Chats obtidos com sucesso", chats });
     } catch (error) {
-      return res.status(500).json({ message: "Erro ao criar chat", error });
+      console.error(error);
+      return res.status(500).json({ message: "Erro ao buscar os chats" });
     }
   }
 
-  // Listar chats
-  static async listChats(req: Request, res: Response) {
+  // Método para criar um novo chat
+  static async createChat(req: Request, res: Response): Promise<Response> {
     try {
-      const chats = await models.Chat.findAll();
-      return res.json(chats);
+      const { name } = req.body;
+
+      if (!name) {
+        return res.status(400).json({ message: "Nome do chat é obrigatório" });
+      }
+
+      // Substitua isso por lógica real (exemplo fictício)
+      const newChat = { id: Date.now(), name };
+
+      return res
+        .status(201)
+        .json({ message: "Chat criado com sucesso", chat: newChat });
     } catch (error) {
-      return res.status(500).json({ message: "Erro ao buscar chats", error });
+      console.error(error);
+      return res.status(500).json({ message: "Erro ao criar o chat" });
     }
   }
 }

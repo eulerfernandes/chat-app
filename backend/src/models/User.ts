@@ -1,42 +1,55 @@
-import { DataTypes, Model, Sequelize } from "sequelize";
+import { Model, DataTypes, Sequelize } from "sequelize";
 
-class User extends Model {
-  public id!: number;
-  public name!: string;
-  public email!: string;
-  public password!: string;
+// Interface para definir os atributos do usuário
+interface UserAttributes {
+  id?: number;
+  email: string;
+  password: string;
+  name: string;
 }
 
-export default class UserModel {
+// Criamos a classe User com os tipos definidos
+class User extends Model<UserAttributes> {
+  public id!: number;
+  public email!: string;
+  public password!: string;
+  public name!: string;
+
+  // Método estático para inicializar o modelo
   static initModel(sequelize: Sequelize) {
     User.init(
       {
         id: {
-          type: DataTypes.UUID,
-          defaultValue: DataTypes.UUIDV4,
+          type: DataTypes.INTEGER,
           primaryKey: true,
-        },
-        name: {
-          type: DataTypes.STRING,
-          allowNull: false,
+          autoIncrement: true,
         },
         email: {
           type: DataTypes.STRING,
           allowNull: false,
           unique: true,
-          validate: { isEmail: true },
         },
         password: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        name: {
           type: DataTypes.STRING,
           allowNull: false,
         },
       },
       {
         sequelize,
+        modelName: "User",
         tableName: "users",
-        timestamps: true,
+        timestamps: true, // Habilita createdAt e updatedAt
+        defaultScope: {
+          attributes: { exclude: ["password"] }, // Oculta a senha por padrão
+        },
       }
     );
-    return User;
+    return User; // Retorna a classe User
   }
 }
+
+export default User;
