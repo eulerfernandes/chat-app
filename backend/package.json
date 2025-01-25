@@ -1,27 +1,31 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Backend do projeto Chat App",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "backend",
+    "chat-app",
+    "express",
+    "typescript"
+  ],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "@elastic/elasticsearch": "^8.17.0",
     "bcryptjs": "^2.4.3",
-    "elasticsearch": "^16.7.3",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.13.1",
     "redis": "^4.7.0",
     "sequelize": "^6.37.5",
-    "socket.io": "^4.8.1",
-    "typeorm": "^0.3.20"
+    "socket.io": "^4.8.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
@@ -30,6 +34,6 @@
     "@types/node": "^22.10.7",
     "@types/socket.io": "^3.0.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.2.0"
   }
 }
