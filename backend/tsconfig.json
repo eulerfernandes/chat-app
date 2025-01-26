@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "CommonJS",
-    "strict": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "typeRoots": ["./node_modules/@types"],
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "target": "ES2020",                  // Define o target ES2020 (compatível com Node.js atual)
+    "module": "CommonJS",               // Usa CommonJS para compatibilidade com Node.js
+    "strict": true,                     // Ativa todas as verificações estritas do TypeScript
+    "outDir": "./dist",                 // Diretório de saída para os arquivos compilados
+    "rootDir": "./src",                 // Diretório de origem dos arquivos TypeScript
+    "esModuleInterop": true,           // Permite interoperabilidade entre módulos ES e CommonJS
+    "resolveJsonModule": true,         // Permite importar arquivos JSON
+    "skipLibCheck": true,              // Ignora a verificação de tipos de arquivos de declaração
+    "typeRoots": ["./node_modules/@types"], // Diretório onde os tipos são resolvidos
+    "allowSyntheticDefaultImports": true,  // Permite importações padrão sintéticas
+    "experimentalDecorators": true,    // Ativa decoradores experimentais (se necessário)
+    "emitDecoratorMetadata": true      // Gera metadados para decoradores (se necessário)
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"],             // Inclui todos os arquivos TypeScript na pasta src
+  "exclude": ["node_modules", "dist"]  // Exclui node_modules e dist
 }

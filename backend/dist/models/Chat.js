@@ -1,8 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Chat = void 0;
 const sequelize_1 = require("sequelize");
+// Classe do modelo Sequelize
 class Chat extends sequelize_1.Model {
 }
+exports.Chat = Chat;
+// Classe para inicializar o modelo
 class ChatModel {
     static initModel(sequelize) {
         Chat.init({
@@ -22,9 +26,9 @@ class ChatModel {
         }, {
             sequelize,
             tableName: "chats",
-            timestamps: true,
+            timestamps: true, // Cria automaticamente createdAt e updatedAt
         });
-        return Chat;
+        return Chat; // Retorna o modelo inicializado
     }
 }
 exports.default = ChatModel;

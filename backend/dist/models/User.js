@@ -1,36 +1,39 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
+// Criamos a classe User com os tipos definidos
 class User extends sequelize_1.Model {
-}
-class UserModel {
+    // Método estático para inicializar o modelo
     static initModel(sequelize) {
         User.init({
             id: {
-                type: sequelize_1.DataTypes.UUID,
-                defaultValue: sequelize_1.DataTypes.UUIDV4,
+                type: sequelize_1.DataTypes.INTEGER,
                 primaryKey: true,
-            },
-            name: {
-                type: sequelize_1.DataTypes.STRING,
-                allowNull: false,
+                autoIncrement: true,
             },
             email: {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: false,
                 unique: true,
-                validate: { isEmail: true },
             },
             password: {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: false,
             },
+            name: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: false,
+            },
         }, {
             sequelize,
+            modelName: "User",
             tableName: "users",
-            timestamps: true,
+            timestamps: true, // Habilita createdAt e updatedAt
+            defaultScope: {
+                attributes: { exclude: ["password"] }, // Oculta a senha por padrão
+            },
         });
-        return User;
+        return User; // Retorna a classe User
     }
 }
-exports.default = UserModel;
+exports.default = User;

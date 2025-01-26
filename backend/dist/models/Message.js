@@ -1,8 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Message = void 0;
 const sequelize_1 = require("sequelize");
 class Message extends sequelize_1.Model {
 }
+exports.Message = Message;
 class MessageModel {
     static initModel(sequelize) {
         Message.init({

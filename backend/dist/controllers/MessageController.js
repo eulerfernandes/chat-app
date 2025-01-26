@@ -1,52 +1,36 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const models_1 = require("../models");
-const redis_1 = __importDefault(require("../config/redis"));
-class MessageController {
-    // Enviar mensagem
-    static sendMessage(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { content, chatId } = req.body;
-                const userId = req.userId; // Middleware de autenticação
-                const message = yield models_1.models.Message.create({ content, userId, chatId });
-                // Cachear mensagem no Redis
-                yield redis_1.default.set(`message:${message.id}`, JSON.stringify(message));
-                return res.status(201).json(message);
-            }
-            catch (error) {
-                return res
-                    .status(500)
-                    .json({ message: "Erro ao enviar mensagem", error });
-            }
+exports.Message = void 0;
+const sequelize_1 = require("sequelize");
+class Message extends sequelize_1.Model {
+}
+exports.Message = Message;
+class MessageModel {
+    static initModel(sequelize) {
+        Message.init({
+            id: {
+                type: sequelize_1.DataTypes.UUID,
+                defaultValue: sequelize_1.DataTypes.UUIDV4,
+                primaryKey: true,
+            },
+            content: {
+                type: sequelize_1.DataTypes.TEXT,
+                allowNull: false,
+            },
+            userId: {
+                type: sequelize_1.DataTypes.UUID,
+                allowNull: false,
+            },
+            chatId: {
+                type: sequelize_1.DataTypes.UUID,
+                allowNull: false,
+            },
+        }, {
+            sequelize,
+            tableName: "messages",
+            timestamps: true,
         });
-    }
-    // Listar mensagens de um chat
-    static listMessages(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { chatId } = req.params;
-                const messages = yield models_1.models.Message.findAll({ where: { chatId } });
-                return res.json(messages);
-            }
-            catch (error) {
-                return res
-                    .status(500)
-                    .json({ message: "Erro ao buscar mensagens", error });
-            }
-        });
+        return Message; // Exporta o modelo instanciado
     }
 }
-exports.default = MessageController;
+exports.default = MessageModel;

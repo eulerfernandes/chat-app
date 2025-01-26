@@ -6,7 +6,7 @@ const sequelize = new Sequelize({
   host: env.DB_HOST || "localhost",
   port: Number(env.DB_PORT) || 5432,
   username: env.DB_USER || "postgres",
-  password: env.DB_PASS || "password",
+  password: env.DB_PASS || "sua_senha",
   database: env.DB_NAME || "chatdb",
   logging: false, // Desativa logs do Sequelize
 });
