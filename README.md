@@ -16,11 +16,6 @@ Este projeto é um **sistema de chat em tempo real** desenvolvido para o teste t
 - Socket.io para comunicação em tempo real
 - JSON Web Token (JWT) para autenticação segura
 
-### **Frontend:**
-
-- Next.js com TypeScript
-- Tailwind CSS para estilização
-- i18n para suporte a múltiplos idiomas
 
 ### **DevOps & Segurança:**
 
@@ -55,13 +50,7 @@ Este projeto é um **sistema de chat em tempo real** desenvolvido para o teste t
 │   │   ├── 📄 server.ts  # Inicialização da API
 │   ├── 📄 Dockerfile
 │   ├── 📄 package.json
-├── 📁 frontend
-│   ├── 📁 src
-│   │   ├── 📁 components  # Componentes reutilizáveis
-│   │   ├── 📁 pages  # Páginas principais do Next.js
-│   │   ├── 📁 services  # Conexão com backend
-│   ├── 📄 package.json
-│   ├── 📄 next.config.js
+├
 ├── 📄 docker-compose.yml  # Orquestração dos serviços
 ├── 📄 README.md
 ```
